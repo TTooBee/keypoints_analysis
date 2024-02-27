@@ -1,0 +1,6 @@
+
+
+diff_origin_coord = diff(origin_coord);
+for i=1:length(diff_origin_coord)
+    if diff_origin_coord(i) > 50 || diff_origin_coord(i) < -50
+        not_diff = [not_diff; i];

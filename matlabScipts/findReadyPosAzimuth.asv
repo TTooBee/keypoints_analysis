@@ -1,0 +1,25 @@
+function ready_pos_azimuth = findReadyPosAzimuth(azimuth)
+azimuth = azimuth/pi;
+loop_dis = 0.01; % -pi부터 pi까지 탐색하는 구간 간격
+counter = 0;
+ready_pos_azimuth = 0;
+max = 0;
+loop_length = 2/loop_dis + 1;
+
+% azimuth 값의 빈도를 계산
+for i=1:loop_length
+    k = i*loop_dis - 1 - loop_dis;
+    for j=1:length(azimuth)
+        if azimuth(j) > k-0.1*pi && azimuth(j) < k+0.1*pi
+            counter = counter + 1;
+        end
+    end
+    if max < counter
+        max = counter;
+        ready_pos_azimuth = k;
+    end
+    counter = 0;
+end
+
+% azimuth의 미분값을 계산
+for

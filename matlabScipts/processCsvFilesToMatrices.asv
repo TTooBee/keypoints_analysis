@@ -1,0 +1,25 @@
+function [point_0, point_1, point_2, point_3, point_4, point_5, point_6, point_7, point_8, ... 
+    point_9, point_10, point_11, point_12, point_13, point_14, point_15, point_16, point_17, point_18, ...
+    point_19, point_20, point_21, point_22, point_23, point_24] = processCsvFilesToMatrices(folderPath)
+    % 폴더 경로에서 모든 CSV 파일 목록을 가져옵니다.
+    csvFiles = dir(fullfile(folderPath, '*.csv'));
+    
+    % CSV 파일 개수만큼의 셀 배열을 초기화합니다.
+    matrices = cell(1, length(csvFiles));
+    
+    % 모든 CSV 파일에 대해 반복합니다.
+    for k = 1:length(csvFiles)
+        % 현재 CSV 파일의 전체 경로를 구성합니다.
+        fullFileName = fullfile(csvFiles(k).folder, csvFiles(k).name);
+        
+        % CSV 파일 이름을 출력합니다.
+        fprintf('Reading %s\n', fullFileName);
+        
+        % CSV 파일을 읽어들여 행렬로 변환합니다.
+        currentMatrix = readmatrix(fullFileName);
+        
+        % 읽어온 행렬을 셀 배열에 저장합니다.
+        matrices{k} = currentMatrix;
+    end
+end
+point_0 = matrices()
